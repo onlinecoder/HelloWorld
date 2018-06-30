@@ -1,1 +1,31 @@
 This is a new file in dev branch
+
+
+
+function isValid(twoChar) {
+    n = parseInt(twoChar);
+    if (n >= 0 && n < 26){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function countWays(input, rest){
+    console.log(input, rest);
+    if (rest.length == 0) {
+        console.log('end****');
+        return 1;
+    }
+    cnt1 = countWays(input+rest.substr(0,1)+' ', rest.substr(1));
+    cnt2 = 0;
+    if (rest.length >= 2) {
+        twoChar = rest.substr(0,2);
+        isv = isValid(twoChar);
+        if (isv) {
+            cnt2 = countWays(input+rest.substr(0,2)+ ' ', rest.substr(2));
+        }
+    }
+
+    return cnt1 + cnt2;        
+}
